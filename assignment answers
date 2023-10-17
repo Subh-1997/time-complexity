@@ -33,3 +33,91 @@ class Solution {
 }
 Time complexity:O(N) Space complexity:O(K)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Reverse String
+Write a function that reverses a string. The input string is given as an array of characters s.
+You must do this by modifying the input array in-place with O(1) extra memory.
+
+class Solution {
+    public void reverseString(char[] s) {
+        int i=0;
+        int j=s.length-1;
+
+        while(i<j){
+            char temp=s[i];
+            s[i]=s[j];
+            s[j]=temp;
+            i++;
+            j--;
+        }
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.You are given an integer T (number of test cases). You are given array A and an integer B for each test case. You have to tell whether B is present in array A or not.Problem Constraints
+input 1:
+1
+5
+4 1 5 9 1
+5
+
+Output
+1
+
+import java.util.Scanner;
+
+public class presenceOfElement {
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	
+	int testCase=sc.nextInt();
+	
+	int length=sc.nextInt();
+	int arr[] = new int[length];
+	for(int i=0;i<length;i++) {
+		arr[i]=sc.nextInt();
+	}
+	
+	int element = sc.nextInt();
+	boolean res = false;
+	for(int i=0;i<arr.length;i++) {
+		if(arr[i]==element) {
+		res=true;
+		break;
+		}
+	}
+	if(res) {
+		System.out.println(1);
+	}else {
+		System.out.println(0);
+	}
+}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4.You are given an integer array A. You have to find the second largest element/value in the array or report that no such element exists.
+
+import java.util.Scanner;
+
+public class Secondmax {
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	
+	int length=sc.nextInt();
+	int arr[] = new int[length];
+	for(int i=0;i<length;i++) {
+		arr[i]=sc.nextInt();
+	}
+	
+	int largest=Integer.MIN_VALUE;
+	int secondLargest=Integer.MIN_VALUE;
+	
+	for(int i=0;i<length;i++) {
+		if(arr[i]>largest) {
+			largest=arr[i];
+			secondLargest=largest;
+		}else if(arr[i]>secondLargest && arr[i]!=largest) {
+			secondLargest=arr[i];
+		}
+	}
+	System.out.println(secondLargest);
+}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
