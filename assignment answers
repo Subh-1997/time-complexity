@@ -33,7 +33,7 @@ class Solution {
 }
 Time complexity:O(N) Space complexity:O(K)
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-2.Reverse String
+3.Reverse String
 Write a function that reverses a string. The input string is given as an array of characters s.
 You must do this by modifying the input array in-place with O(1) extra memory.
 
@@ -52,7 +52,7 @@ class Solution {
     }
 }
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-3.You are given an integer T (number of test cases). You are given array A and an integer B for each test case. You have to tell whether B is present in array A or not.Problem Constraints
+4.You are given an integer T (number of test cases). You are given array A and an integer B for each test case. You have to tell whether B is present in array A or not.Problem Constraints
 input 1:
 1
 5
@@ -92,7 +92,7 @@ public static void main(String[] args) {
 }
 }
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-4.You are given an integer array A. You have to find the second largest element/value in the array or report that no such element exists.
+5.You are given an integer array A. You have to find the second largest element/value in the array or report that no such element exists.
 
 import java.util.Scanner;
 
@@ -124,7 +124,7 @@ public static void main(String[] args) {
 }
 }
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-5.You are given an array of integers A of size N.Return the difference between the maximum among all even numbers of A and the minimum among all odd numbers in A.
+6.You are given an array of integers A of size N.Return the difference between the maximum among all even numbers of A and the minimum among all odd numbers in A.
 A = [0, 2, 9]
 Maximum of all even numbers = 2
 Minimum of all odd numbers = 9
@@ -133,28 +133,119 @@ import java.util.Scanner;
 public class EvenMaxOddMinDiff {
 public static void main(String[] args) {
 
-	Scanner sc = new Scanner(System.in);
-	
+	Scanner sc = new Scanner(System.in);	
 	int length=sc.nextInt();
 	int arr[] = new int[length];
 	for(int i=0;i<length;i++) {
 		arr[i]=sc.nextInt();
 	}
 	
-	int max=Integer.MIN_VALUE;
-	int min=Integer.MAX_VALUE;
-	for(int i=0;i<length;i++) {
-		if(arr[i]%2!=0) {
-			if(arr[i]<min) {
-				min=arr[i];
-		}
-		}else{
-			if(arr[i]>max) {
-				max=arr[i];
-			}
-		}
+	int maxEven=Integer.MIN_VALUE;
+	int minOdd=Integer.MAX_VALUE;
+	for(int i=0;i<arr.length;i++) {
+		
+
+        for (int num : arr) {
+            if (num % 2 == 0 && num > maxEven) {
+                maxEven = num;
+            } else if (num % 2 != 0 && num < minOdd) {
+                minOdd = num;
+            }
+        }
+
+        if (maxEven == Integer.MIN_VALUE ) {
+           maxEven=0;
+        }
+        if ( minOdd == Integer.MAX_VALUE) {
+        	minOdd=0;
+        }
+       
 	}
-	int diff = max-min;
-	System.out.println(diff);
+	 int diff= maxEven - minOdd;
+		System.out.println(diff);
 }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7.You are given an integer T denoting the number of test cases. For each test case, you are given an integer array A.
+
+import java.util.Scanner;
+
+public class EvenOdd {
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	
+	int noOFTestCase=sc.nextInt();
+	
+	for(int i=0;i<noOFTestCase;i++) {
+		genrateTestCase(sc);
+	}
+			
+			
+}
+
+private static void genrateTestCase( Scanner sc) {
+
+	int length = sc.nextInt();
+	int arr[]=new int[length];
+	
+	for(int i=0;i<length;i++) {
+		arr[i]=sc.nextInt();
+	}
+	  for (int num : arr) {
+          if (num % 2 == 0) {
+        	  System.out.print(num+" ");
+          }
+      }
+	  System.out.println();
+	  for (int num : arr) {
+          if (num % 2 != 0 ) {
+             System.out.print(num+" ");
+          }
+
+      }
+}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9.Given an integer array A of size N and an integer B, you have to print the same array after rotating it B times towards the right.
+
+class Solution {
+    public static void rotateArray(int[] nums,int k,int n){
+        if(n==0){
+            return;
+        }
+        k=k%n;
+        int temp []=new int[k];
+        for(int i=0;i<k;i++){
+            temp[i]=nums[n-k+i];
+        } 
+
+        for(int i=n-k-1;i>=0;i--){
+            nums[i+k]=nums[i];
+        }
+
+           for (int i = 0; i < k; i++) {
+            nums[i] = temp[i];
+        }
+    }
+    public void rotate(int[] nums, int k) {
+        int n=nums.length;
+        rotateArray(nums,k,n);
+    }
+}
+Time complexity:O(N) Space complexity:O(K)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10.Given an array of integers nums, return the number of good pairs.
+
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int count=0;
+        for(int i=0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[i]==nums[j] && i<j){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }
